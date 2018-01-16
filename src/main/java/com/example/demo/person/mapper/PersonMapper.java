@@ -1,6 +1,7 @@
 package com.example.demo.person.mapper;
 
 import com.example.demo.person.domain.Person;
+import com.github.pagehelper.Page;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -38,5 +39,13 @@ public interface PersonMapper {
      * @return
      */
     Person findById(@Param("id") Long id);
+
+
+    /**
+     *
+     *
+     * @return
+     */
+    Page<Person> list();
 }
 

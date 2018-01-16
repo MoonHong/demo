@@ -3,6 +3,9 @@ package com.example.demo.person.service;
 import com.example.demo.person.domain.Person;
 import com.example.demo.person.mapper.PersonMapper;
 import com.example.demo.person.result.BaseResult;
+import com.example.demo.person.result.PageResult;
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -65,5 +68,20 @@ public class PersonServiceImpl implements PersonService {
             return BaseResult.notFound();
         }
         return BaseResult.success(person);
+    }
+
+
+    /**
+     *
+     *
+     * @param pageNo
+     * @param pageSize
+     * @return
+     */
+    @Override
+    public PageResult list(Integer pageNo, Integer pageSize) {
+        PageHelper.startPage(pageNo,pageSize);
+        Page<Person>page=personMapper.list();
+        return new PageResult(page);
     }
 }

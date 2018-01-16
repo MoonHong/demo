@@ -2,6 +2,7 @@ package com.example.demo.person.service;
 
 import com.example.demo.person.domain.Person;
 import com.example.demo.person.result.BaseResult;
+import com.example.demo.person.result.PageResult;
 
 /**
  * @author by hmy
@@ -35,4 +36,14 @@ public interface PersonService {
      * @return
      */
     BaseResult findById(Long id);
+
+
+    /**
+     *
+     *
+     * @param pageNo
+     * @param pageSize
+     * @return
+     */
+    PageResult list(Integer pageNo, Integer pageSize);
 }

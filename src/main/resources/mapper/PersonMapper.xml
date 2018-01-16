@@ -32,4 +32,16 @@
         updateDate
         FROM t_characteristic WHERE id=#{id}
     </select>
+
+
+    <select id="list" resultType="com.example.demo.person.domain.Person">
+        SELECT
+        id,
+        eyes,
+        name,
+        height,
+        createDate,
+        updateDate
+        FROM t_characteristic
+    </select>
 </mapper>

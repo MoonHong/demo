@@ -2,6 +2,7 @@ package com.example.demo.person.controller;
 
 import com.example.demo.person.domain.Person;
 import com.example.demo.person.result.BaseResult;
+import com.example.demo.person.result.PageResult;
 import com.example.demo.person.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -52,5 +53,17 @@ public class PersonController {
     @GetMapping("/findById")
     public BaseResult findById(@RequestParam(value = "id") Long id){
         return personService.findById(id);
+    }
+
+    /**
+     *
+     *
+     * @param pageNo
+     * @param pageSize
+     * @return
+     */
+    @GetMapping("/list")
+    public PageResult list(Integer pageNo,Integer pageSize){
+        return personService.list(pageNo,pageSize);
     }
 }
