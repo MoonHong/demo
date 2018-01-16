@@ -2,6 +2,7 @@ package com.example.demo.person.mapper;
 
 import com.example.demo.person.domain.Person;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 /**
  * @author by hmy
@@ -28,5 +29,14 @@ public interface PersonMapper {
      * @return
      */
     Integer update(Person person);
+
+
+    /**
+     *
+     *
+     * @param id
+     * @return
+     */
+    Person findById(@Param("id") Long id);
 }
 

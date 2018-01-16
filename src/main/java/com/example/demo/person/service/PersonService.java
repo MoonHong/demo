@@ -26,4 +26,13 @@ public interface PersonService {
      * @return
      */
     BaseResult update(Person person);
+
+
+    /**
+     *
+     *
+     * @param id
+     * @return
+     */
+    BaseResult findById(Long id);
 }

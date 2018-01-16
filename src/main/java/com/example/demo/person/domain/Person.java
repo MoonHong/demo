@@ -3,7 +3,7 @@ package com.example.demo.person.domain;
 
 import com.alibaba.fastjson.annotation.JSONField;
 
-import javax.xml.crypto.Data;
+import java.util.Date;
 
 /**
  * @author by hmy
@@ -21,10 +21,10 @@ public class Person {
     private int height;
 
     @JSONField(format = "yyyy-MM-dd HH:mm:ss")
-    private Data updateDate;
+    private Date updateDate;
 
     @JSONField(format = "yyyy-MM-dd HH:mm:ss")
-    private Data createDate;
+    private Date createDate;
 
     public Long getId() {
         return id;
@@ -58,19 +58,19 @@ public class Person {
         this.height = height;
     }
 
-    public Data getUpdateDate() {
+    public Date getUpdateDate() {
         return updateDate;
     }
 
-    public void setUpdateDate(Data updateData) {
-        this.updateDate = updateData;
+    public void setUpdateDate(Date updateDate) {
+        this.updateDate = updateDate;
     }
 
-    public Data getCreateDate() {
+    public Date getCreateDate() {
         return createDate;
     }
 
-    public void setCreateDate(Data createDate) {
+    public void setCreateDate(Date createDate) {
         this.createDate = createDate;
     }
 

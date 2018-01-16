@@ -4,10 +4,7 @@ import com.example.demo.person.domain.Person;
 import com.example.demo.person.result.BaseResult;
 import com.example.demo.person.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @author by hmy
@@ -43,5 +40,17 @@ public class PersonController {
     @PostMapping("/update")
     public BaseResult update(@RequestBody Person person){
         return personService.update(person);
+    }
+
+
+    /**
+     *
+     *
+     * @param id
+     * @return
+     */
+    @GetMapping("/findById")
+    public BaseResult findById(@RequestParam(value = "id") Long id){
+        return personService.findById(id);
     }
 }

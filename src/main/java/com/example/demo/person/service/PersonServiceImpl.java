@@ -19,8 +19,6 @@ public class PersonServiceImpl implements PersonService {
     private PersonMapper personMapper;
 
     /**
-     *
-     *
      * @param person
      * @return
      */
@@ -35,8 +33,6 @@ public class PersonServiceImpl implements PersonService {
 
 
     /**
-     *
-     *
      * @param person
      * @return
      */
@@ -45,10 +41,29 @@ public class PersonServiceImpl implements PersonService {
         if (person.getId() == null) {
             return BaseResult.parameterError();
         }
-        Integer result=personMapper.update(person);
-        if (result<0){
-            return BaseResult.error("ERROR","修改失败");
+        Integer result = personMapper.update(person);
+        if (result < 0) {
+            return BaseResult.error("ERROR", "修改失败");
         }
         return BaseResult.success("修改成功");
+    }
+
+
+    /**
+     *
+     *
+     * @param id
+     * @return
+     */
+    @Override
+    public BaseResult findById(Long id) {
+        if (id == null) {
+            return BaseResult.parameterError();
+        }
+        Person person=personMapper.findById(id);
+        if (person==null){
+            return BaseResult.notFound();
+        }
+        return BaseResult.success(person);
     }
 }
