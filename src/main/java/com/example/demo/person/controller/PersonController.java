@@ -1,0 +1,28 @@
+package com.example.demo.person.controller;
+
+import com.example.demo.person.domain.Person;
+import com.example.demo.person.result.BaseResult;
+import com.example.demo.person.service.PersonService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+/**
+ * @author by hmy
+ * @version <0.1>
+ * @created on 2018-01-15.
+ */
+@RestController
+@RequestMapping("/index")
+public class PersonController {
+
+    @Autowired
+    private PersonService personService;
+
+    @PostMapping("/test")
+    public BaseResult add(@RequestBody Person person){
+        return personService.add(person);
+    }
+}
