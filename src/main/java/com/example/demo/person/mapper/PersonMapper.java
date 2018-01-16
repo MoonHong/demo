@@ -19,4 +19,14 @@ public interface PersonMapper {
      * @return
      */
     Integer add(Person person);
+
+
+    /**
+     *
+     *
+     * @param person
+     * @return
+     */
+    Integer update(Person person);
 }
+

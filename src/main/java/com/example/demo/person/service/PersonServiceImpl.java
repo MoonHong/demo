@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
  * @created on 2018-01-15.
  */
 @Service
-public class PersonServiceImpl implements PersonService{
+public class PersonServiceImpl implements PersonService {
 
 
     @Autowired
@@ -26,10 +26,29 @@ public class PersonServiceImpl implements PersonService{
      */
     @Override
     public BaseResult add(Person person) {
-        Integer result=personMapper.add(person);
-        if (result<0){
-            return BaseResult.error("ERROR","添加失败");
+        Integer result = personMapper.add(person);
+        if (result < 0) {
+            return BaseResult.error("ERROR", "添加失败");
         }
         return BaseResult.success("添加成功");
+    }
+
+
+    /**
+     *
+     *
+     * @param person
+     * @return
+     */
+    @Override
+    public BaseResult update(Person person) {
+        if (person.getId() == null) {
+            return BaseResult.parameterError();
+        }
+        Integer result=personMapper.update(person);
+        if (result<0){
+            return BaseResult.error("ERROR","修改失败");
+        }
+        return BaseResult.success("修改成功");
     }
 }

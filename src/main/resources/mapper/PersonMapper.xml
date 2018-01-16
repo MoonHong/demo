@@ -7,8 +7,18 @@
 
     <insert id="add" parameterType="com.example.demo.person.domain.Person">
         INSERT INTO t_characteristic
-        (eyes,name,height)
+        (eyes,name,height,createDate)
         VALUES
-        (#{eyes},#{name},#{height})
+        (#{eyes},#{name},#{height},now())
     </insert>
+
+    <!---->
+    <update id="update" parameterType="com.example.demo.person.domain.Person">
+        UPDATE t_characteristic SET
+        <if test="eyes!=null">eyes=#{eyes},</if>
+        <if test="name!=null">name=#{name},</if>
+        <if test="height!=null">height=#{height},</if>
+        updateDate=now()
+        WHERE id=#{id}
+    </update>
 </mapper>

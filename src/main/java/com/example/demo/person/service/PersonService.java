@@ -17,4 +17,13 @@ public interface PersonService {
      * @return
      */
     BaseResult add(Person person);
+
+
+    /**
+     *
+     *
+     * @param person
+     * @return
+     */
+    BaseResult update(Person person);
 }

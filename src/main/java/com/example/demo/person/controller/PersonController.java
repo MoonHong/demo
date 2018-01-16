@@ -21,8 +21,27 @@ public class PersonController {
     @Autowired
     private PersonService personService;
 
+
+    /**
+     *
+     *
+     * @param person
+     * @return
+     */
     @PostMapping("/test")
     public BaseResult add(@RequestBody Person person){
         return personService.add(person);
+    }
+
+
+    /**
+     *
+     *
+     * @param person
+     * @return
+     */
+    @PostMapping("/update")
+    public BaseResult update(@RequestBody Person person){
+        return personService.update(person);
     }
 }
