@@ -66,4 +66,15 @@ public class PersonController {
     public PageResult list(Integer pageNo,Integer pageSize){
         return personService.list(pageNo,pageSize);
     }
+
+    /**
+     *
+     *
+     * @param id
+     * @return
+     */
+    @PostMapping("/delete")
+    public BaseResult delete(@RequestParam("id") Long id){
+        return personService.delete(id);
+    }
 }

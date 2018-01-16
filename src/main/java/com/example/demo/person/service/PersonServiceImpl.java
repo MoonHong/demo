@@ -53,8 +53,6 @@ public class PersonServiceImpl implements PersonService {
 
 
     /**
-     *
-     *
      * @param id
      * @return
      */
@@ -63,8 +61,8 @@ public class PersonServiceImpl implements PersonService {
         if (id == null) {
             return BaseResult.parameterError();
         }
-        Person person=personMapper.findById(id);
-        if (person==null){
+        Person person = personMapper.findById(id);
+        if (person == null) {
             return BaseResult.notFound();
         }
         return BaseResult.success(person);
@@ -72,16 +70,31 @@ public class PersonServiceImpl implements PersonService {
 
 
     /**
-     *
-     *
      * @param pageNo
      * @param pageSize
      * @return
      */
     @Override
     public PageResult list(Integer pageNo, Integer pageSize) {
-        PageHelper.startPage(pageNo,pageSize);
-        Page<Person>page=personMapper.list();
+        PageHelper.startPage(pageNo, pageSize);
+        Page<Person> page = personMapper.list();
         return new PageResult(page);
+    }
+
+
+    /**
+     * @param id
+     * @return
+     */
+    @Override
+    public BaseResult delete(Long id) {
+        if (id == null) {
+            return BaseResult.parameterError();
+        }
+        Integer result=personMapper.delete(id);
+        if (result<0){
+            return BaseResult.error("ERROR","删除失败");
+        }
+        return BaseResult.success("删除成功");
     }
 }

@@ -47,5 +47,14 @@ public interface PersonMapper {
      * @return
      */
     Page<Person> list();
+
+
+    /**
+     *
+     *
+     * @param id
+     * @return
+     */
+    Integer delete(@Param("id") Long id);
 }
 

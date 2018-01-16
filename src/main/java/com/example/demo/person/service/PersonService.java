@@ -46,4 +46,13 @@ public interface PersonService {
      * @return
      */
     PageResult list(Integer pageNo, Integer pageSize);
+
+
+    /**
+     *
+     *
+     * @param id
+     * @return
+     */
+    BaseResult delete(Long id);
 }

@@ -44,4 +44,8 @@
         updateDate
         FROM t_characteristic
     </select>
+
+    <delete id="delete">
+        DELETE  FROM t_characteristic WHERE id=#{id}
+    </delete>
 </mapper>
