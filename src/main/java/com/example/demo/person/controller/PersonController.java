@@ -108,4 +108,5 @@ public class PersonController {
         List<Long>idList=jsonArray.toJavaList(Long.class);
         return personService.deleteById(idList);
     }
+
 }
