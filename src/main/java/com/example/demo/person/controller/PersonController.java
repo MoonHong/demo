@@ -1,11 +1,15 @@
 package com.example.demo.person.controller;
 
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.example.demo.person.domain.Person;
 import com.example.demo.person.result.BaseResult;
 import com.example.demo.person.result.PageResult;
 import com.example.demo.person.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * @author by hmy
@@ -76,5 +80,32 @@ public class PersonController {
     @PostMapping("/delete")
     public BaseResult delete(@RequestParam("id") Long id){
         return personService.delete(id);
+    }
+
+
+    /**
+     *
+     *
+     * @param jsonObject
+     * @return
+     */
+    @PostMapping("/deleteByIdList")
+    public BaseResult deleteByIdList(@RequestBody JSONObject jsonObject){
+        String status=jsonObject.getString("status");
+        List<Long>idList=jsonObject.getJSONArray("idList").toJavaList(Long.class);
+        return personService.deleteIdList(status,idList);
+    }
+
+
+    /**
+     *
+     *
+     * @param jsonArray
+     * @return
+     */
+    @PostMapping("/deleteById")
+    public BaseResult deleteId(@RequestBody JSONArray jsonArray){
+        List<Long>idList=jsonArray.toJavaList(Long.class);
+        return personService.deleteById(idList);
     }
 }

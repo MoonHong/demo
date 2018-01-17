@@ -6,8 +6,11 @@ import com.example.demo.person.result.BaseResult;
 import com.example.demo.person.result.PageResult;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.util.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * @author by hmy
@@ -91,10 +94,50 @@ public class PersonServiceImpl implements PersonService {
         if (id == null) {
             return BaseResult.parameterError();
         }
-        Integer result=personMapper.delete(id);
-        if (result<0){
-            return BaseResult.error("ERROR","删除失败");
+        Integer result = personMapper.delete(id);
+        if (result < 0) {
+            return BaseResult.error("ERROR", "删除失败");
         }
         return BaseResult.success("删除成功");
+    }
+
+
+    /**
+     * @param status
+     * @param idList
+     * @return
+     */
+    @Override
+    public BaseResult deleteIdList(String status, List<Long> idList) {
+
+        if (StringUtil.isEmpty(status) || idList.size() < 0 || idList == null) {
+            return BaseResult.parameterError();
+        }
+        Integer result = personMapper.deleteIdList(status, idList);
+        if (result < idList.size()) {
+            return BaseResult.error("ERROR", "未完全删除");
+        }
+        if (result==idList.size()){
+            return BaseResult.success("删除成功");
+        }
+        return BaseResult.error("ERROR","删除失败");
+    }
+
+    /**
+     *
+     *
+     * @param idList
+     * @return
+     */
+    @Override
+    public BaseResult deleteById(List<Long> idList) {
+        Integer result=personMapper.cute(idList);
+        if (result<idList.size()){
+            return BaseResult.error("ERROR","未删除完全");
+        }
+        if (result==idList.size()){
+            return BaseResult.success("删除成功");
+        }
+        return BaseResult.error("ERROR","删除失败");
     }
 }

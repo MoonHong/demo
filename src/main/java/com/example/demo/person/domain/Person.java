@@ -20,6 +20,12 @@ public class Person {
 
     private int height;
 
+    /**
+     *
+     * 正常 normal  删除unNormal
+     */
+    private String status;
+
 //    @JSONField(format = "yyyy-MM-dd HH:mm:ss")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",locale = "zh",timezone = "GMT+8")
     private Date updateDate;
@@ -75,6 +81,14 @@ public class Person {
         this.createDate = createDate;
     }
 
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
     @Override
     public String toString() {
         return "Person{" +
@@ -82,6 +96,7 @@ public class Person {
                 ", eyes='" + eyes + '\'' +
                 ", name='" + name + '\'' +
                 ", height=" + height +
+                ", status='" + status + '\'' +
                 ", updateDate=" + updateDate +
                 ", createDate=" + createDate +
                 '}';

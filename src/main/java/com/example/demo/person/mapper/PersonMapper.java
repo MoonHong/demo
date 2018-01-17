@@ -5,6 +5,8 @@ import com.github.pagehelper.Page;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
+
 /**
  * @author by hmy
  * @version <0.1>
@@ -56,5 +58,25 @@ public interface PersonMapper {
      * @return
      */
     Integer delete(@Param("id") Long id);
+
+
+    /**
+     *
+     *
+     * @param status
+     * @param idList
+     * @return
+     */
+    Integer deleteIdList(@Param("status") String status,
+                         @Param("idList") List<Long> idList);
+
+
+    /**
+     *
+     *
+     * @param idList
+     * @return
+     */
+    Integer cute(@Param("idList") List<Long> idList);
 }
 

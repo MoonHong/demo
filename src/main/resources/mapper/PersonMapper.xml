@@ -48,4 +48,25 @@
     <delete id="delete">
         DELETE  FROM t_characteristic WHERE id=#{id}
     </delete>
+
+    <update id="deleteIdList">
+        UPDATE t_characteristic SET
+        <if test="status!=null">status=#{status},</if>
+        updateDate=now()
+        WHERE id IN
+        <foreach collection="idList" index="index" item="item" open="(" separator="," close=" )">
+            #{item}
+        </foreach>
+    </update>
+
+
+    <update id="=cute">
+        UPDATE t_characteristic SET 
+        status='unNormal',
+        updateDate=now()
+        WHERE id IN
+        <foreach collection="idList" index="index" item="item" open="(" separator="," close=" )">
+            #{item}
+        </foreach>
+    </update>
 </mapper>
