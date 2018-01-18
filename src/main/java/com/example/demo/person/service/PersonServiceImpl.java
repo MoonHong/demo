@@ -47,6 +47,10 @@ public class PersonServiceImpl implements PersonService {
         if (person.getId() == null) {
             return BaseResult.parameterError();
         }
+        Integer valid=personMapper.validName(person.getId(),person.getName());
+        if (valid>0){
+            return BaseResult.error("ERROR","名称重复");
+        }
         Integer result = personMapper.update(person);
         if (result < 0) {
             return BaseResult.error("ERROR", "修改失败");

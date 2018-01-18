@@ -78,5 +78,15 @@ public interface PersonMapper {
      * @return
      */
     Integer cute(@Param("idList") List<Long> idList);
+
+
+    /**
+     *
+     *
+     * @param id
+     * @param name
+     * @return
+     */
+    Integer validName(@Param("id") Long id,@Param("name") String name);
 }
 

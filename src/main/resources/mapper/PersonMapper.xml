@@ -69,4 +69,8 @@
             #{item}
         </foreach>
     </update>
+
+    <select id="validName" resultType="java.lang.Integer">
+        SELECT COUNT(*) FROM t_characteristic WHERE name=#{name} AND id!=#{id}
+    </select>
 </mapper>
