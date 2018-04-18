@@ -6,10 +6,10 @@
 <mapper namespace="com.example.demo.person.mapper.PersonMapper">
 
     <insert id="add" parameterType="com.example.demo.person.domain.Person">
-        INSERT INTO t_characteristic
-        (eyes,name,height,createDate)
+        INSERT INTO t_person
+        (name,createDate,status,phone,organization,validDate)
         VALUES
-        (#{eyes},#{name},#{height},now())
+        (#{name},now(),#{status},#{phone},#{organization},#{validDate})
     </insert>
 
     <!---->
@@ -37,13 +37,22 @@
     <select id="list" resultType="com.example.demo.person.domain.Person">
         SELECT
         id,
-        eyes,
+        phone,
         name,
-        height,
-        createDate,
-        updateDate
-        FROM t_characteristic
+        organization,
+        status,
+        validDate
+        FROM t_person
     </select>
+
+    <select id="getList" resultType="com.example.demo.person.domain.Stadium">
+        SELECT
+        id,
+        stadiumName
+        FROM t_stadium
+    </select>
+
+
 
     <delete id="delete">
         DELETE  FROM t_characteristic WHERE id=#{id}

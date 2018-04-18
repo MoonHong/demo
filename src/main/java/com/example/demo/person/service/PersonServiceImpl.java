@@ -1,6 +1,7 @@
 package com.example.demo.person.service;
 
 import com.example.demo.person.domain.Person;
+import com.example.demo.person.domain.Stadium;
 import com.example.demo.person.mapper.PersonMapper;
 import com.example.demo.person.result.BaseResult;
 import com.example.demo.person.result.PageResult;
@@ -143,5 +144,17 @@ public class PersonServiceImpl implements PersonService {
             return BaseResult.success("删除成功");
         }
         return BaseResult.error("ERROR","删除失败");
+    }
+
+
+    /**
+     *
+     *
+     * @return
+     */
+    @Override
+    public PageResult getList() {
+        Page<Stadium> page=personMapper.getList();
+        return new PageResult(page);
     }
 }

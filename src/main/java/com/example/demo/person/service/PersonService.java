@@ -76,4 +76,12 @@ public interface PersonService {
      * @return
      */
     BaseResult deleteById(List<Long> idList);
+
+
+    /**
+     *
+     *
+     * @return
+     */
+    PageResult getList();
 }

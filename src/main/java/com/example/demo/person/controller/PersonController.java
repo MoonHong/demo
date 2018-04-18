@@ -30,7 +30,7 @@ public class PersonController {
      * @param person
      * @return
      */
-    @PostMapping("/test")
+    @PostMapping("/add")
     public BaseResult add(@RequestBody Person person){
         return personService.add(person);
     }
@@ -66,9 +66,21 @@ public class PersonController {
      * @param pageSize
      * @return
      */
-    @GetMapping("/list")
-    public PageResult list(Integer pageNo,Integer pageSize){
+    @RequestMapping(value = "/list",method = RequestMethod.GET)
+    //@GetMapping("/list")
+    public PageResult list(@RequestParam("pageNo") Integer pageNo,@RequestParam("pageSize") Integer pageSize){
         return personService.list(pageNo,pageSize);
+    }
+
+
+    /**
+     *
+     *
+     * @return
+     */
+    @GetMapping("/stadiumList")
+    public PageResult getList(){
+        return personService.getList();
     }
 
     /**

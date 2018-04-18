@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.person.mapper.CourseMapper">
+
+    <select id="getList" resultType="com.example.demo.person.domain.Course">
+        SELECT
+        id,
+        name,
+        stadiumName,
+        coachName,
+        classTime,
+        startDate
+        FROM t_course WHERE 1=1
+        <if test="searchKey!=null and searchKey!=''">AND name LIKE #{searchKey}
+        </if>
+    </select>
+
+</mapper>

@@ -18,7 +18,7 @@ public class Person {
 
     private String name;
 
-    private int height;
+    private double height;
 
     /**
      *
@@ -32,6 +32,13 @@ public class Person {
 
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",locale = "zh",timezone = "GMT+8")
     private Date createDate;
+
+    private String phone;
+
+    private String organization;
+
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",locale = "zh",timezone = "GMT+8")
+    private Date validDate;
 
     public Long getId() {
         return id;
@@ -57,11 +64,11 @@ public class Person {
         this.name = name;
     }
 
-    public int getHeight() {
+    public double getHeight() {
         return height;
     }
 
-    public void setHeight(int height) {
+    public void setHeight(double height) {
         this.height = height;
     }
 
@@ -89,6 +96,30 @@ public class Person {
         this.status = status;
     }
 
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getOrganization() {
+        return organization;
+    }
+
+    public void setOrganization(String organization) {
+        this.organization = organization;
+    }
+
+    public Date getValidDate() {
+        return validDate;
+    }
+
+    public void setValidDate(Date validDate) {
+        this.validDate = validDate;
+    }
+
     @Override
     public String toString() {
         return "Person{" +
@@ -99,6 +130,9 @@ public class Person {
                 ", status='" + status + '\'' +
                 ", updateDate=" + updateDate +
                 ", createDate=" + createDate +
+                ", phone='" + phone + '\'' +
+                ", organization='" + organization + '\'' +
+                ", validDate=" + validDate +
                 '}';
     }
 }
