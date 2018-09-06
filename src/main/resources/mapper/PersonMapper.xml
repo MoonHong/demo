@@ -7,17 +7,20 @@
 
     <insert id="add" parameterType="com.example.demo.person.domain.Person">
         INSERT INTO t_person
-        (name,createDate,status,phone,organization,validDate)
+        (name,eyes,height,status,phone,organization)
         VALUES
-        (#{name},now(),#{status},#{phone},#{organization},#{validDate})
+        (#{name},#{eyes},#{height},#{status},#{phone},#{organization})
     </insert>
 
     <!---->
     <update id="update" parameterType="com.example.demo.person.domain.Person">
-        UPDATE t_characteristic SET
+        UPDATE t_person SET
         <if test="eyes!=null">eyes=#{eyes},</if>
         <if test="name!=null">name=#{name},</if>
         <if test="height!=null">height=#{height},</if>
+        <if test="status!=null">status=#{status},</if>
+        <if test="phone!=null">phone=#{phone},</if>
+        <if test="organization!=null">organization=#{organization},</if>
         updateDate=now()
         WHERE id=#{id}
     </update>
@@ -28,9 +31,10 @@
         eyes,
         name,
         height,
-        createDate,
-        updateDate
-        FROM t_characteristic WHERE id=#{id}
+        status,
+        phone,
+        organization
+        FROM t_person WHERE id=#{id}
     </select>
 
 

@@ -9,6 +9,9 @@ import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.util.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,6 +22,7 @@ import java.util.List;
  * @created on 2018-01-15.
  */
 @Service
+@CacheConfig(cacheNames = "person")
 public class PersonServiceImpl implements PersonService {
 
 
@@ -30,12 +34,11 @@ public class PersonServiceImpl implements PersonService {
      * @return
      */
     @Override
-    public BaseResult add(Person person) {
-        Integer result = personMapper.add(person);
-        if (result < 0) {
-            return BaseResult.error("ERROR", "添加失败");
-        }
-        return BaseResult.success("添加成功");
+//    @CachePut(key = "#p0.id")
+    @Cacheable(value = "person", keyGenerator = "firstParamKeyGenerator")
+    public void add(Person person) {
+        personMapper.add(person);
+
     }
 
 
@@ -44,19 +47,9 @@ public class PersonServiceImpl implements PersonService {
      * @return
      */
     @Override
-    public BaseResult update(Person person) {
-        if (person.getId() == null) {
-            return BaseResult.parameterError();
-        }
-        Integer valid=personMapper.validName(person.getId(),person.getName());
-        if (valid>0){
-            return BaseResult.error("ERROR","名称重复");
-        }
-        Integer result = personMapper.update(person);
-        if (result < 0) {
-            return BaseResult.error("ERROR", "修改失败");
-        }
-        return BaseResult.success("修改成功");
+    @Cacheable(value = "person", key = "#p0")
+    public void update(Person person) {
+        personMapper.update(person);
     }
 
 
@@ -65,15 +58,10 @@ public class PersonServiceImpl implements PersonService {
      * @return
      */
     @Override
-    public BaseResult findById(Long id) {
-        if (id == null) {
-            return BaseResult.parameterError();
-        }
+    @Cacheable(value = "person", keyGenerator = "firstParamKeyGenerator")
+    public Person findById(Long id) {
         Person person = personMapper.findById(id);
-        if (person == null) {
-            return BaseResult.notFound();
-        }
-        return BaseResult.success(person);
+        return person;
     }
 
 
@@ -122,39 +110,35 @@ public class PersonServiceImpl implements PersonService {
         if (result < idList.size()) {
             return BaseResult.error("ERROR", "未完全删除");
         }
-        if (result==idList.size()){
+        if (result == idList.size()) {
             return BaseResult.success("删除成功");
         }
-        return BaseResult.error("ERROR","删除失败");
+        return BaseResult.error("ERROR", "删除失败");
     }
 
     /**
-     *
-     *
      * @param idList
      * @return
      */
     @Override
     public BaseResult deleteById(List<Long> idList) {
-        Integer result=personMapper.cute(idList);
-        if (result<idList.size()){
-            return BaseResult.error("ERROR","未删除完全");
+        Integer result = personMapper.cute(idList);
+        if (result < idList.size()) {
+            return BaseResult.error("ERROR", "未删除完全");
         }
-        if (result==idList.size()){
+        if (result == idList.size()) {
             return BaseResult.success("删除成功");
         }
-        return BaseResult.error("ERROR","删除失败");
+        return BaseResult.error("ERROR", "删除失败");
     }
 
 
     /**
-     *
-     *
      * @return
      */
     @Override
     public PageResult getList() {
-        Page<Stadium> page=personMapper.getList();
+        Page<Stadium> page = personMapper.getList();
         return new PageResult(page);
     }
 }

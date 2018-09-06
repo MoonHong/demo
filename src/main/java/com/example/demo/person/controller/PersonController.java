@@ -25,99 +25,83 @@ public class PersonController {
 
 
     /**
-     *
-     *
      * @param person
      * @return
      */
     @PostMapping("/add")
-    public BaseResult add(@RequestBody Person person){
-        return personService.add(person);
+    public void add(@RequestBody Person person) {
+        personService.add(person);
     }
 
 
     /**
-     *
-     *
      * @param person
      * @return
      */
     @PostMapping("/update")
-    public BaseResult update(@RequestBody Person person){
-        return personService.update(person);
+    public void update(@RequestBody Person person) {
+        personService.update(person);
     }
 
 
     /**
-     *
-     *
      * @param id
      * @return
      */
     @GetMapping("/findById")
-    public BaseResult findById(@RequestParam(value = "id") Long id){
+    public Person findById(@RequestParam(value = "id") Long id) {
         return personService.findById(id);
     }
 
     /**
-     *
-     *
      * @param pageNo
      * @param pageSize
      * @return
      */
-    @RequestMapping(value = "/list",method = RequestMethod.GET)
+    @RequestMapping(value = "/list", method = RequestMethod.GET)
     //@GetMapping("/list")
-    public PageResult list(@RequestParam("pageNo") Integer pageNo,@RequestParam("pageSize") Integer pageSize){
-        return personService.list(pageNo,pageSize);
+    public PageResult list(@RequestParam("pageNo") Integer pageNo, @RequestParam("pageSize") Integer pageSize) {
+        return personService.list(pageNo, pageSize);
     }
 
 
     /**
-     *
-     *
      * @return
      */
     @GetMapping("/stadiumList")
-    public PageResult getList(){
+    public PageResult getList() {
         return personService.getList();
     }
 
     /**
-     *
-     *
      * @param id
      * @return
      */
     @PostMapping("/delete")
-    public BaseResult delete(@RequestParam("id") Long id){
+    public BaseResult delete(@RequestParam("id") Long id) {
         return personService.delete(id);
     }
 
 
     /**
-     *
-     *
      * @param jsonObject
      * @return
      */
     @PostMapping("/deleteByIdList")
-    public BaseResult deleteByIdList(@RequestBody JSONObject jsonObject){
-        String status=jsonObject.getString("status");
-        List<Long>idList=jsonObject.getJSONArray("idList").toJavaList(Long.class);
-        return personService.deleteIdList(status,idList);
+    public BaseResult deleteByIdList(@RequestBody JSONObject jsonObject) {
+        String status = jsonObject.getString("status");
+        List<Long> idList = jsonObject.getJSONArray("idList").toJavaList(Long.class);
+        return personService.deleteIdList(status, idList);
     }
 
 
     /**
-     *
-     *
      * @param jsonArray
      * @return
      */
     @PostMapping("/deleteById")
-    public BaseResult deleteId(@RequestBody JSONArray jsonArray){
-        List<Long>idList=jsonArray.toJavaList(Long.class);
+    public BaseResult deleteId(@RequestBody JSONArray jsonArray) {
+        List<Long> idList = jsonArray.toJavaList(Long.class);
         return personService.deleteById(idList);
     }
 

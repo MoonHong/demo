@@ -4,7 +4,7 @@ server:
 spring:
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
-    url: jdbc:mysql://localhost:3306/mysql?useSSL=false
+    url: jdbc:mysql://localhost:3306/cloud_cfs_dic?useSSL=false
     driver-class-name: com.mysql.jdbc.Driver
     username: root
     password: root
@@ -24,4 +24,21 @@ spring:
 mybatis:
   type-aliases-package: com.example.demo.person.domain
   mapper-locations: classpath*:/mapper/*.xml
+  show-sql: true
+#  configuration:
+#     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 
+
+#配置redis数据库连接
+redis:
+  host: 127.0.0.1
+  port: 6379
+  pool:
+    max-idle:20
+    min-idle:1
+    max-active:100
+    max-wait:100000
+  timeout: 0
+logging:
+  level:
+    com.example.demo.person.mapper: trace

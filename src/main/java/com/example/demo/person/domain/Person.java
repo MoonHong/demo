@@ -3,6 +3,7 @@ package com.example.demo.person.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -10,7 +11,7 @@ import java.util.Date;
  * @version <0.1>
  * @created on 2018-01-15.
  */
-public class Person {
+public class Person implements Serializable{
 
     private Long id;
 
@@ -18,7 +19,7 @@ public class Person {
 
     private String name;
 
-    private double height;
+    private String height;
 
     /**
      *
@@ -64,11 +65,11 @@ public class Person {
         this.name = name;
     }
 
-    public double getHeight() {
+    public String getHeight() {
         return height;
     }
 
-    public void setHeight(double height) {
+    public void setHeight(String height) {
         this.height = height;
     }
 
@@ -126,7 +127,7 @@ public class Person {
                 "id=" + id +
                 ", eyes='" + eyes + '\'' +
                 ", name='" + name + '\'' +
-                ", height=" + height +
+                ", height='" + height + '\'' +
                 ", status='" + status + '\'' +
                 ", updateDate=" + updateDate +
                 ", createDate=" + createDate +

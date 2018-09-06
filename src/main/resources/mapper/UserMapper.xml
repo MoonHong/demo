@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.person.mapper.UserMapper">
+
+    <select id="list" resultType="com.example.demo.person.domain.User">
+        SELECT
+        id,
+        name,
+        age,
+        address,
+        pwd
+        FROM t_user
+    </select>
+
+    <insert id="add" parameterType="com.example.demo.person.domain.User">
+        INSERT INTO t_user
+        (name,age,address,pwd)
+        VALUES
+        (#{name},#{age},#{address},#{pwd})
+    </insert>
+
+    <update id="update" parameterType="com.example.demo.person.domain.User">
+        UPDATE t_user SET
+        <if test="name!=null">name=#{name},</if>
+        <if test="age!=null">age=#{age},</if>
+        <if test="address!=null">address=#{address},</if>
+        <if test="pwd!=null">pwd=#{pwd}</if>
+        WHERE id=#{id}
+    </update>
+
+    <select id="getById" resultType="com.example.demo.person.domain.User">
+        SELECT
+        id,
+        name,
+        age,
+        address,
+        pwd
+        FROM t_user WHERE id=#{id}
+    </select>
+
+</mapper>

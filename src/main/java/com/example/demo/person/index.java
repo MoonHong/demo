@@ -24,6 +24,11 @@ public class index {
         student.put("key7","value7");
         System.out.println(student);
 
+
+//        String str="123abc456";
+//        String a=str.substring(0,5);
+//        System.out.println(a);
+
     }
 
 

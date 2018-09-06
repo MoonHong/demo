@@ -19,7 +19,7 @@ public interface PersonService {
      * @param person
      * @return
      */
-    BaseResult add(Person person);
+    void add(Person person);
 
 
     /**
@@ -28,7 +28,7 @@ public interface PersonService {
      * @param person
      * @return
      */
-    BaseResult update(Person person);
+    void update(Person person);
 
 
     /**
@@ -37,7 +37,7 @@ public interface PersonService {
      * @param id
      * @return
      */
-    BaseResult findById(Long id);
+    Person findById(Long id);
 
 
     /**

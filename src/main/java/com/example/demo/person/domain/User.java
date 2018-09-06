@@ -1,37 +1,32 @@
 package com.example.demo.person.domain;
 
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+
+import java.io.Serializable;
+
 
 /**
  * @author by hmy
  * @version <0.1>
  * @created on 2018-01-17.
  */
-public class User {
+public class User implements Serializable {
 
 
-    private String id;
+    private Long id;
 
     private String name;
 
-    private int age;
+    private Integer age;
 
-    private Link link;
+    private String address;
 
-    private Map map;
+    private String pwd;
 
-    private Set set;
-
-    private List list;
-
-
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -43,57 +38,38 @@ public class User {
         this.name = name;
     }
 
-    public int getAge() {
+    public Integer getAge() {
         return age;
     }
 
-    public void setAge(int age) {
+    public void setAge(Integer age) {
         this.age = age;
     }
 
-    public Link getLink() {
-        return link;
+    public String getAddress() {
+        return address;
     }
 
-    public void setLink(Link link) {
-        this.link = link;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
-    public Map getMap() {
-        return map;
+    public String getPwd() {
+        return pwd;
     }
 
-    public void setMap(Map map) {
-        this.map = map;
+    public void setPwd(String pwd) {
+        this.pwd = pwd;
     }
-
-    public Set getSet() {
-        return set;
-    }
-
-    public void setSet(Set set) {
-        this.set = set;
-    }
-
-    public List getList() {
-        return list;
-    }
-
-    public void setList(List list) {
-        this.list = list;
-    }
-
 
     @Override
     public String toString() {
         return "User{" +
-                "id='" + id + '\'' +
+                "id=" + id +
                 ", name='" + name + '\'' +
                 ", age=" + age +
-                ", link=" + link +
-                ", map=" + map +
-                ", set=" + set +
-                ", list=" + list +
+                ", address='" + address + '\'' +
+                ", pwd='" + pwd + '\'' +
                 '}';
     }
 }
